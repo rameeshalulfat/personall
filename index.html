@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For You ❤️</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial;
+      text-align: center;
+      background: linear-gradient(to right, #ff758c, #ff7eb3);
+      color: white;
+      overflow: hidden;
+    }
+
+    .container {
+      padding: 50px;
+      position: relative;
+      z-index: 2;
+    }
+
+    input {
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      margin-top: 10px;
+    }
+
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      background: white;
+      color: #ff4d6d;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #ffe6eb;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* Emoji Rain */
+    .emoji {
+      position: fixed;
+      top: -10px;
+      font-size: 24px;
+      animation: fall linear infinite;
+      z-index: 1;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- PASSWORD PAGE -->
+<div class="container" id="login">
+  <h1>Enter Password 🔒</h1>
+  <p><i>Hint: the day we meet first time 💭</i></p>
+  <input type="password" id="password" placeholder="Enter password">
+  <br>
+  <button onclick="checkPassword()">Enter</button>
+  <p id="error"></p>
+</div>
+
+<!-- YES / NO PAGE -->
+<div class="container hidden" id="choice">
+  <h1>Do you still love me ? </h1>
+  <button onclick="showYes()">Yes ❤️</button>
+  <button onclick="showNo()">No 💔</button>
+</div>
+
+<!-- YES MESSAGE -->
+<div class="container hidden" id="yesPage">
+  <h1>Thank You</h1>
+  <p>
+    musa maan jao nah please mere jan hogy ghlti manti ho i know bhot bry ghlti ha bhot bura kia meny likn jan pelease nah ek last chance dydo<br><br>
+
+    bhot pyr krty o apsy ni reh sako gy kasam sy ni reh sako gy<br>
+    dobara zindagi me kbi asa kuch ni kro gy please musa please mere jan yo sb khtm mt kro nah 💔<br>
+    mny  pory zindagi apky sth ka soucha hua ek ek jga har chez ksy rho gy as mt kro nah please musa<br><br>
+
+    
+
+    please ek akhri chance dydo musa please
+    i really really love you ❤️<br>
+    I'm sorry... I love you so much  
+  </p>
+</div>
+
+<!-- NO MESSAGE -->
+<div class="container hidden" id="noPage">
+  <h1>love you and sorry</h1>
+  <p>
+    I'm sorry once again... <br><br>
+
+    mere pass ab sorry k elwa kuch ni ha sb khtm krdya meny really sorry kbi ni chty ty ye sb ho💔<br><br>
+koi nah allah bhtr krein ga
+     khush raho hamesha ameen<br>
+    stay blessed ✨<br>
+    Allah apky achy naseeb karein... ameen ameen <br><br>
+
+    love you... byee 💔<br>
+    will never text you again, don't worry 
+  </p>
+
+  <button onclick="goBack()">⬅ Back</button>
+</div>
+
+<script>
+  function checkPassword() {
+    let pass = document.getElementById("password").value;
+    if (pass === "41224") {
+      document.getElementById("login").classList.add("hidden");
+      document.getElementById("choice").classList.remove("hidden");
+      startEmojiRain();
+    } else {
+      document.getElementById("error").innerText = "Wrong password 😢";
+    }
+  }
+
+  function showYes() {
+    document.getElementById("choice").classList.add("hidden");
+    document.getElementById("yesPage").classList.remove("hidden");
+  }
+
+  function showNo() {
+    document.getElementById("choice").classList.add("hidden");
+    document.getElementById("noPage").classList.remove("hidden");
+  }
+
+  function goBack() {
+    document.getElementById("noPage").classList.add("hidden");
+    document.getElementById("choice").classList.remove("hidden");
+  }
+
+  // Emoji Rain (🙏 )
+  function startEmojiRain() {
+    const emojis = ["🙏", ];
+
+    setInterval(() => {
+      let emoji = document.createElement("div");
+      emoji.classList.add("emoji");
+      emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+
+      emoji.style.left = Math.random() * 100 + "vw";
+      emoji.style.animationDuration = (2 + Math.random() * 3) + "s";
+
+      document.body.appendChild(emoji);
+
+      setTimeout(() => {
+        emoji.remove();
+      }, 5000);
+
+    }, 300);
+  }
+</script>
+
+</body>
+</html>
